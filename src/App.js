@@ -1,11 +1,11 @@
 import React        from 'react';
-import LoginForm    from './loginForm/LoginForm';
+import CreateNewUserForm    from './CreateNewUserForm/CreateNewUserForm';
 
 class App extends React.Component {
   render() {
   return (
     <div className="app"> 
-    <LoginForm />
+    <CreateNewUserForm />
     </div>
   );
 }

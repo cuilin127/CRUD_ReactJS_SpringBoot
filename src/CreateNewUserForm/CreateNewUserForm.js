@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import './style.css'
+import './CreateNewUserForm.css'
+import CreateResult from './CreateResult.js';
 class LoginForm extends Component {
 
 
@@ -9,7 +10,8 @@ class LoginForm extends Component {
     this.state = {
       emailAddress: '',
       name: '',
-      password: ''
+      password: '',
+      result: ''
     }
   }
   render() {
@@ -46,6 +48,8 @@ class LoginForm extends Component {
         />
         <br />
         <button onClick={this.doLogIn.bind(this)}>Sign Up</button>
+        <br />
+        <CreateResult loginResult={this.state.result}/>
       </div>
     );
   }
@@ -57,7 +61,6 @@ class LoginForm extends Component {
 
   doLogIn(e) {
     e.preventDefault();
-    //console.log(this.state);
     const params = {
       email: this.state.emailAddress,
       name: this.state.name,
@@ -72,10 +75,14 @@ class LoginForm extends Component {
     }
     )
       .then(response => {
-        console.log("RESPONSE RECEIVED: ",response);
+        console.log("RESPONSE RECEIVED: ",response.data);
+        this.setState({
+          result : 'Successfully Create a New User with: '+response.data.user.email
+        }
+        )
       })
       .catch((err) => {
-        console.log("AXIOS ERROR: ", err);
+        console.log("AXIOS ERROR: ", err.response);
       })
       
   }
