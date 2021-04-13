@@ -50,6 +50,7 @@ class LoginForm extends Component {
         <button onClick={this.doLogIn.bind(this)}>Sign Up</button>
         <br />
         <CreateResult loginResult={this.state.result}/>
+        {/**Comment */}
       </div>
     );
   }
@@ -83,6 +84,11 @@ class LoginForm extends Component {
       })
       .catch((err) => {
         console.log("AXIOS ERROR: ", err.response);
+        this.setState(
+          {
+            result: 'Error occured while creating user.'
+          }
+        )
       })
       
   }
